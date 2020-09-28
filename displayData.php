@@ -7,4 +7,3 @@ class mymoduledisplayModuleFrontController extends ModuleFrontController
         $this->setTemplate('module:contact/views/templates/front/displayData.tpl');
     }
 }
-

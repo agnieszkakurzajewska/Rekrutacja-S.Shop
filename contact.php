@@ -40,6 +40,7 @@ class Contact extends Module
     
         return parent::install() &&
             $this->registerHook('leftColumn') &&
+            $this->registerHook('home') &&
             $this->registerHook('actionFrontControllerSetMedia') &&
             Configuration::updateValue('PHONE', '+48 000 000 000') &&
             Configuration::updateValue('EMAIL', 'example@email.com');
@@ -156,19 +157,18 @@ class Contact extends Module
             'EMAIL'=> Configuration::get('EMAIL'),
             'my_module_link' => $this->context->link->getModuleLink('contact', 'display')
         ]);
-
+        $this->context->controller->addCSS($this->_path.'views/css/contact.css');
         return $this->display(__FILE__, 'displayData.tpl');
     }
 
-    // public function hookActionFrontControllerSetMedia()
-    // {
-    //     $this->context->controller->registerStylesheet(
-    //         'contact-style',
-    //         $this->_path.'views/css/contact.css',
-    //         [
-    //             'media' => 'all',
-    //             'priority' => 1000,
-    //         ]
-    //     );
-    // }
+    public function hookActionFrontControllerSetMedia($params) {
+        $this->context->controller->registerStylesheet(
+            'module-id_contact-style',
+            'modules/contact/views/css/contact.css',
+            [
+                'media' => 'all',
+                'priority' => 200,
+            ]
+        );
+    }
 }
