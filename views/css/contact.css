@@ -1,8 +1,19 @@
-p4 {
-    background-color: black;
-    font-size: larger;
+#label {
+    background: rgb(255,223,205);
+    background: linear-gradient(90deg, rgba(255,223,205,1) 0%, rgba(255,153,99,1) 0%, rgba(255,89,0,1) 100%);
+    padding: 20px;
+    font-size: 30;
+    text-transform: uppercase;
+    text-align: center;
 }
-.block_content {
-    background-color: brown;
-    font-family: 'Times New Roman', Times, serif;
+#block {
+    padding: 40px;
+
+}
+#main_settings {
+    font-family: 'Verdana', serif;
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(77,77,77,0.7318277652858018) 0%, rgba(0,0,0,1) 100%);
+    color:white;
+
 }
