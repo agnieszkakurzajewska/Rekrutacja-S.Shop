@@ -24,7 +24,6 @@ class Contact extends Module
         $this->description = $this->l('Contact box on the front office - contains e-mail address and phone number');
 
         $this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
-        $this->default_lang = (int)Configuration::get('PS_LANG_DEFAULT');
 
 
         if (!Configuration::get('CONTACT')) {
@@ -87,9 +86,8 @@ class Contact extends Module
 
     public function displayForm()
     {
-        // Get default language
         $defaultLang = (int)Configuration::get('PS_LANG_DEFAULT');
-    
+
         $fieldsForm[0]['form'] = [
             'legend' => [
                 'title' => $this->l('Data'),
@@ -118,7 +116,6 @@ class Contact extends Module
     
         $helper = new HelperForm();
         
-        // Module, Token and currentIndex
         $helper->module = $this;
         $helper->name_controller = $this->name;
         $helper->token = Tools::getAdminTokenLite('AdminModules');
@@ -128,10 +125,10 @@ class Contact extends Module
         $helper->default_form_language = $defaultLang;
         $helper->allow_employee_form_lang = $defaultLang;
         
-        // title and Toolbar
+
         $helper->title = $this->displayName;
-        $helper->show_toolbar = true;        // false -> remove toolbar
-        $helper->toolbar_scroll = true;      // yes - > Toolbar is always visible on the top of the screen.
+        $helper->show_toolbar = true;
+        $helper->toolbar_scroll = true;
         $helper->submit_action = 'submit'.$this->name;
         $helper->toolbar_btn = [
             'save' => [
@@ -160,18 +157,18 @@ class Contact extends Module
             'my_module_link' => $this->context->link->getModuleLink('contact', 'display')
         ]);
 
-        return $this->display(__FILE__, 'display.tpl');
+        return $this->display(__FILE__, 'displayData.tpl');
     }
 
-    public function hookActionFrontControllerSetMedia()
-    {
-        $this->context->controller->registerStylesheet(
-            'contact-style',
-            $this->_path.'views/css/contact.css',
-            [
-                'media' => 'all',
-                'priority' => 1000,
-            ]
-        );
-    }
+    // public function hookActionFrontControllerSetMedia()
+    // {
+    //     $this->context->controller->registerStylesheet(
+    //         'contact-style',
+    //         $this->_path.'views/css/contact.css',
+    //         [
+    //             'media' => 'all',
+    //             'priority' => 1000,
+    //         ]
+    //     );
+    // }
 }
